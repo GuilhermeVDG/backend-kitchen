@@ -79,6 +79,10 @@ class User {
       token: token
     };
   }
+
+  async detail(){
+    return { ok: true };
+  }
 }
 
 export default User;

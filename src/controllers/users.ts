@@ -8,6 +8,7 @@ class User {
     
     this.create = this.create.bind(this);
     this.login = this.login.bind(this);
+    this.detail = this.detail.bind(this);
   }
   
   async create(req: Request, res: Response){
@@ -28,6 +29,11 @@ class User {
       email,
       password
     });
+    return res.json(response);
+  }
+
+  async detail(req: Request, res: Response){
+    const response = await this.userServices.detail();
     return res.json(response);
   }
 }

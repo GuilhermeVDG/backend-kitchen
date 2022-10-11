@@ -1,5 +1,6 @@
 import { Router } from "express";
-import UserController from '../controllers/users'
+import UserController from '../controllers/users';
+import AuthMiddleware from '../middlewares/auth';
 
 class User {
   routes: Router;
@@ -13,6 +14,7 @@ class User {
   setup(){
     this.routes.post('/cadastro', this.userController.create);
     this.routes.post('/login', this.userController.login);
+    this.routes.get('/me', AuthMiddleware ,this.userController.detail);
 
     return this.routes;
   }
