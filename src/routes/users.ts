@@ -14,7 +14,10 @@ class User {
   setup(){
     this.routes.post('/cadastro', this.userController.create);
     this.routes.post('/login', this.userController.login);
-    this.routes.get('/me', AuthMiddleware ,this.userController.detail);
+    
+    this.routes.use(AuthMiddleware);
+
+    this.routes.get('/me',this.userController.detail);
 
     return this.routes;
   }

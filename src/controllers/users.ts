@@ -33,7 +33,7 @@ class User {
   }
 
   async detail(req: Request, res: Response){
-    const response = await this.userServices.detail();
+    const response = await this.userServices.detail(req.userId);
     return res.json(response);
   }
 }
