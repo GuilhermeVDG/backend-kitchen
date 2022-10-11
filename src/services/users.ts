@@ -1,5 +1,7 @@
 import prismaClient from '../prisma'; 
 import { hash, compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
+import authConfig from '../config/auth'
 
 interface StoreRequest {
   name: string,
@@ -60,7 +62,22 @@ class User {
 
     if(!samePassword) throw new Error("WRONG_PASSWORD");
 
-    return { ok: true };
+    const token = sign({
+      name: user.name,
+      email: user.email
+    },
+    authConfig.secret, {
+      subject: user.id,
+      expiresIn: authConfig.expiresIn
+    }
+    )
+
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      token: token
+    };
   }
 }
 
