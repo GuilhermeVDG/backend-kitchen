@@ -12,7 +12,7 @@ class User {
   async create(req: Request, res: Response){
     const { name, email, password } = req.body;
 
-    const response = await this.userServices.create({
+    const response = await this.userServices.store({
       name,
       email,
       password
