@@ -18,7 +18,7 @@ class Routes {
 
   setup(){
     this.routes.use('/', this.userRoutes.setup());
-    this.routes.use('/category', this.categoryRoutes.setup());
+    this.routes.use('/categories', this.categoryRoutes.setup());
 
     return this.routes
   }

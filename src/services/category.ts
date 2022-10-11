@@ -29,6 +29,21 @@ class Category {
 
     return response
   }
+
+  async list() {
+    console.log('eaeeeeeee monark aq');
+    
+    const response = await prismaClient.category.findMany({
+      select:{
+        id: true,
+        name: true
+      }
+    });
+
+    if(!response) throw new Error("NOT_FOUND");
+
+    return response
+  }
 }
 
 export default Category;

@@ -15,6 +15,7 @@ class Category {
     this.routes.use(AuthMiddleware);
 
     this.routes.post('/create', this.categoryController.store);
+    this.routes.get('/list', this.categoryController.list);
 
     return this.routes;
   }
