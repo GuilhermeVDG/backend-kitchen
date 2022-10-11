@@ -12,6 +12,7 @@ class User {
 
   setup(){
     this.routes.post('/cadastro', this.userController.create);
+    this.routes.post('/login', this.userController.login);
 
     return this.routes;
   }
