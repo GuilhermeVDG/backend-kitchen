@@ -13,13 +13,13 @@ class Product{
   async store(req: Request, res: Response){
     const { name, price, description, category_id } = req.body;
 
-    let banner = '';
+    if(!req.file) throw new Error("FILE_NOT_FOUND");
     
     const response = await this.productServices.store({
       name,
       price,
       description,
-      banner,
+      banner: '',
       category_id
     })
 
