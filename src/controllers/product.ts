@@ -14,12 +14,14 @@ class Product{
     const { name, price, description, category_id } = req.body;
 
     if(!req.file) throw new Error("FILE_NOT_FOUND");
+
+    const { originalname, filename: banner } = req.file;
     
     const response = await this.productServices.store({
       name,
       price,
       description,
-      banner: '',
+      banner,
       category_id
     })
 

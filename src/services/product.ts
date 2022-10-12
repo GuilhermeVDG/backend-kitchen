@@ -10,7 +10,17 @@ interface ProductRequest{
 
 class Product{
   async store({ name, price, description, banner, category_id }: ProductRequest){
-    return { ok: true };
+    const response = await prismaClient.product.create({
+      data: {
+        name: name,
+        price: price,
+        description: description,
+        banner: banner,
+        category_id: category_id
+      }
+    })
+    
+    return response;
   }
 }
 

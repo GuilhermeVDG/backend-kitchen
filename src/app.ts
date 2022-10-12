@@ -1,11 +1,12 @@
-import express, { Request, Response, NextFunction, Router } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import Routes from './routes';
+import path from 'path';
 
 class App{
   routes: Routes;
-  app;
+  app: any;
 
   constructor(){
     this.app = express();
@@ -15,6 +16,11 @@ class App{
     this.app.use(cors());
 
     this.app.use(this.routes.setup());
+
+    this.app.use(
+      '/files',
+      express.static(path.resolve(__dirname, '..', 'tmp'))
+    );
 
     this.app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       if(err instanceof Error){
