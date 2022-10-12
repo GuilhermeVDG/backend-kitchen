@@ -1,25 +1,26 @@
 import { Router } from 'express';
-import UserController from './controllers/users'
 import UserRoutes from './routes/users'
 import CategoryRoutes from './routes/category';
+import ProductRoutes from './routes/product';
 
 class Routes {
   routes: Router;
-  userCotroller: UserController;
   userRoutes: UserRoutes;
-  categoryRoutes: CategoryRoutes
+  categoryRoutes: CategoryRoutes;
+  productRoutes: ProductRoutes;
 
   constructor(){
     this.routes = Router();
-    this.userCotroller = new UserController();
+
     this.userRoutes = new UserRoutes();
     this.categoryRoutes = new CategoryRoutes();
+    this.productRoutes = new ProductRoutes();
   }
 
   setup(){
     this.routes.use('/', this.userRoutes.setup());
-    this.routes.use('/categories', this.categoryRoutes.setup());
-
+    this.routes.use('/category', this.categoryRoutes.setup());
+    this.routes.use('/product', this.productRoutes.setup());
     return this.routes
   }
 }
