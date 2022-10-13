@@ -8,6 +8,7 @@ class Product{
     this.productServices = new ProductServices();
 
     this.store = this.store.bind(this);
+    this.listByCategory = this.listByCategory.bind(this);
   }
 
   async store(req: Request, res: Response){
@@ -26,6 +27,15 @@ class Product{
     })
 
     return res.json(response);
+  }
+
+  async listByCategory(req: Request, res: Response){
+    const category_id = req.query.category_id as string;
+
+    const response = await this.productServices.listByCategory({ category_id });
+
+    return res.json(response);
+
   }
 }
 

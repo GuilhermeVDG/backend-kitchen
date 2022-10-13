@@ -8,6 +8,10 @@ interface ProductRequest{
   category_id: string
 }
 
+interface ListRquest{
+  category_id: string
+}
+
 class Product{
   async store({ name, price, description, banner, category_id }: ProductRequest){
     const response = await prismaClient.product.create({
@@ -18,8 +22,18 @@ class Product{
         banner: banner,
         category_id: category_id
       }
-    })
+    });
     
+    return response;
+  }
+
+  async listByCategory({ category_id }: ListRquest){
+    const response = await prismaClient.product.findMany({
+      where:{
+        category_id: category_id
+      }
+    });
+
     return response;
   }
 }

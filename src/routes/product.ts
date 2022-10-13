@@ -15,6 +15,7 @@ class Product{
     this.routes.use(AuthMiddleware);
 
     this.routes.post('/', this.productController.store);
+    this.routes.get('/', this.productController.listByCategory);
 
     return this.routes;
   }
