@@ -76,6 +76,20 @@ class Order{
 
     return response;
   }
+
+  async listAll(){
+    const response = await prismaClient.order.findMany({
+      where: {
+        draft: false,
+        status: false
+      },
+      orderBy: {
+        created_at: 'desc'
+      }
+    });
+
+    return response;
+  }
 }
 
 export default Order;
