@@ -16,6 +16,10 @@ interface ItemRequest{
 
 }
 
+interface RemoveItemRequest{
+  item_id: string;
+}
+
 class Order{
   async store({ table, name }: OrderRequest){
     const response = await prismaClient.order.create({
@@ -47,6 +51,16 @@ class Order{
       }
     });
     
+    return response;
+  }
+
+  async removeItem({ item_id }: RemoveItemRequest){
+    const response = await prismaClient.item.delete({
+      where:{
+        id: item_id
+      }
+    });
+
     return response;
   }
 }

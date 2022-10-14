@@ -10,7 +10,7 @@ class Order{
     this.store = this.store.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
     this.addItem = this.addItem.bind(this);
-
+    this.removeItem = this.removeItem.bind(this);
   }
 
   async store(req: Request, res: Response){
@@ -40,6 +40,14 @@ class Order{
       product_id,
       amount
     });
+
+    return res.json(response);
+  }
+
+  async removeItem(req: Request, res: Response){
+    const item_id = req.query.item_id as string;
+
+    const response = await this.orderServices.removeItem({ item_id });
 
     return res.json(response);
   }
