@@ -13,6 +13,7 @@ class Order{
     this.removeItem = this.removeItem.bind(this);
     this.sendOrder = this.sendOrder.bind(this);
     this.listAll = this.listAll.bind(this);
+    this.detailOrder = this.detailOrder.bind(this);
   }
 
   async store(req: Request, res: Response){
@@ -64,6 +65,14 @@ class Order{
 
   async listAll(req: Request, res: Response){
     const response = await this.orderServices.listAll();
+
+    return res.json(response);
+  }
+
+  async detailOrder(req: Request, res: Response){
+    const order_id = req.query.order_id as string;
+
+    const response = await this.orderServices.detailOrder({ order_id });
 
     return res.json(response);
   }

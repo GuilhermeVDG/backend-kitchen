@@ -20,6 +20,7 @@ class Order{
     this.routes.delete('/remove', this.orderController.removeItem);
     this.routes.put('/send', this.orderController.sendOrder);
     this.routes.get('/list', this.orderController.listAll);
+    this.routes.get('/detail', this.orderController.detailOrder);
 
     return this.routes;
   }

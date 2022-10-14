@@ -90,6 +90,20 @@ class Order{
 
     return response;
   }
+
+  async detailOrder({ order_id }: FindOrderRequest){
+    const response =  await prismaClient.item.findMany({
+      where:{
+        order_id: order_id
+      },
+      include:{
+        product: true,
+        order: true
+      }
+    });
+
+    return response;
+  }
 }
 
 export default Order;
