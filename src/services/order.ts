@@ -104,6 +104,19 @@ class Order{
 
     return response;
   }
+
+  async finishOrder({ order_id }: FindOrderRequest){
+    const response = await prismaClient.order.update({
+      where:{
+        id: order_id
+      },
+      data:{
+        status: true
+      }
+    });
+
+    return response;
+  }
 }
 
 export default Order;

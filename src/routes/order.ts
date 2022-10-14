@@ -21,6 +21,7 @@ class Order{
     this.routes.put('/send', this.orderController.sendOrder);
     this.routes.get('/list', this.orderController.listAll);
     this.routes.get('/detail', this.orderController.detailOrder);
+    this.routes.put('/finish', this.orderController.finishOrder);
 
     return this.routes;
   }

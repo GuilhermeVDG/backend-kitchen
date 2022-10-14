@@ -14,6 +14,7 @@ class Order{
     this.sendOrder = this.sendOrder.bind(this);
     this.listAll = this.listAll.bind(this);
     this.detailOrder = this.detailOrder.bind(this);
+    this.finishOrder = this.finishOrder.bind(this);
   }
 
   async store(req: Request, res: Response){
@@ -73,6 +74,14 @@ class Order{
     const order_id = req.query.order_id as string;
 
     const response = await this.orderServices.detailOrder({ order_id });
+
+    return res.json(response);
+  }
+
+  async finishOrder(req: Request, res: Response){
+    const { order_id } = req.body;
+
+    const response = await this.orderServices.finishOrder({ order_id });
 
     return res.json(response);
   }
