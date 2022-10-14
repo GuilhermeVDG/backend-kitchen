@@ -5,7 +5,7 @@ interface OrderRequest{
   name: string;
 }
 
-interface RemoveOrderRequest{
+interface FindOrderRequest{
   order_id: string;
 }
 
@@ -32,7 +32,7 @@ class Order{
     return response;
   }
 
-  async removeOrder({ order_id }: RemoveOrderRequest){
+  async removeOrder({ order_id }: FindOrderRequest){
     const response = await prismaClient.order.delete({
       where:{
         id: order_id
@@ -58,6 +58,19 @@ class Order{
     const response = await prismaClient.item.delete({
       where:{
         id: item_id
+      }
+    });
+
+    return response;
+  }
+
+  async sendOrder({ order_id }: FindOrderRequest){
+    const response = await prismaClient.order.update({
+      where:{
+        id: order_id
+      },
+      data:{
+        draft: false
       }
     });
 
