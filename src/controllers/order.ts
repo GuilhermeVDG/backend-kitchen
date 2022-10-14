@@ -9,6 +9,7 @@ class Order{
 
     this.store = this.store.bind(this);
     this.removeOrder = this.removeOrder.bind(this);
+    this.addItem = this.addItem.bind(this);
 
   }
 
@@ -27,6 +28,18 @@ class Order{
     const order_id = req.query.order_id as string;
 
     const response = await this.orderServices.removeOrder({ order_id });
+
+    return res.json(response);
+  }
+
+  async addItem(req: Request, res: Response){
+    const { order_id, product_id, amount } = req.body;
+
+    const response = await this.orderServices.addItem({
+      order_id,
+      product_id,
+      amount
+    });
 
     return res.json(response);
   }

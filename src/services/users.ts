@@ -4,14 +4,14 @@ import { sign } from 'jsonwebtoken';
 import authConfig from '../config/auth'
 
 interface StoreRequest {
-  name: string,
-  email: string,
-  password: string
+  name: string;
+  email: string;
+  password: string;
 }
 
 interface LoginRequest {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
 
 class User {
