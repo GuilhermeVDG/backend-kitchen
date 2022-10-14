@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import OrderServices from '../services/order';
 
 class Order{
@@ -8,6 +8,8 @@ class Order{
     this.orderServices = new OrderServices;
 
     this.store = this.store.bind(this);
+    this.removeOrder = this.removeOrder.bind(this);
+
   }
 
   async store(req: Request, res: Response){
@@ -17,6 +19,14 @@ class Order{
       table,
       name
     });
+
+    return res.json(response);
+  }
+
+  async removeOrder(req: Request, res: Response) {
+    const order_id = req.query.order_id as string;
+
+    const response = await this.orderServices.removeOrder({ order_id });
 
     return res.json(response);
   }

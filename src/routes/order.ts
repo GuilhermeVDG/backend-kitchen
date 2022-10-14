@@ -15,6 +15,7 @@ class Order{
     this.routes.use(AuthMiddleware);
 
     this.routes.post('/', this.orderController.store);
+    this.routes.delete('/', this.orderController.removeOrder);
 
     return this.routes;
   }
