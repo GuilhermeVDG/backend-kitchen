@@ -31,7 +31,6 @@ class Category {
   }
 
   async list() {
-    console.log('eaeeeeeee monark aq');
     
     const response = await prismaClient.category.findMany({
       select:{
