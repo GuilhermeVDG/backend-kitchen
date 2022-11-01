@@ -9,9 +9,6 @@ interface PayLoad{
 export default async (req: Request, res: Response, next: NextFunction) => {
   const authToken = req.headers.authorization;
 
-  console.log(authToken);
-  
-
   if(!authToken) return res.status(401).json({ error: 'INVALID_TOKEN' });
 
   const token = authToken.split(' ')[1];
