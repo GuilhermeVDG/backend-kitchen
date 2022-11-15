@@ -9,6 +9,7 @@ class Product{
 
     this.store = this.store.bind(this);
     this.listByCategory = this.listByCategory.bind(this);
+    this.find = this.find.bind(this);
   }
 
   async store(req: Request, res: Response){
@@ -36,6 +37,14 @@ class Product{
 
     return res.json(response);
 
+  }
+
+  async find(req: Request, res: Response){
+    const product_id = req.body.product_id as string;
+
+    const response = await this.productServices.find({ product_id });
+
+    return res.json(response);    
   }
 }
 

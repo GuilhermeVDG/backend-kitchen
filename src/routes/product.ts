@@ -16,6 +16,7 @@ class Product{
 
     this.routes.post('/', this.productController.store);
     this.routes.get('/', this.productController.listByCategory);
+    this.routes.get('/find', this.productController.find);
 
     return this.routes;
   }

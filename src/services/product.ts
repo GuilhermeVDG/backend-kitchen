@@ -12,6 +12,10 @@ interface ListRquest{
   category_id: string;
 }
 
+interface FindRequest{
+  product_id: string;
+}
+
 class Product{
   async store({ name, price, description, banner, category_id }: ProductRequest){
     const response = await prismaClient.product.create({
@@ -34,8 +38,19 @@ class Product{
       }
     });
 
+    return response;  
+  }
+
+  async find({ product_id }: FindRequest){
+    const response = await prismaClient.product.findFirst({
+      where:{
+        id: product_id
+      }
+    });
+
     return response;
   }
 }
+
 
 export default Product;
