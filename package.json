@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev index.ts",
-    "build": "npx prisma migrate deploy",
+    "build": "yarn && npx prisma migrate deploy",
     "start": "node dist/index.js"
   },
   "devDependencies": {
