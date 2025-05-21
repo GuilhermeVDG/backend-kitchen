@@ -13,7 +13,13 @@ class App{
     this.routes = new Routes();
     this.app.use(express.json());
 
-    this.app.use(cors());
+    this.app.use(cors({
+      origin: 'https://front-web-kitchen-sr.vercel.app/', 
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    }));
+    
 
     this.app.use(this.routes.setup());
 
