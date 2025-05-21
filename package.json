@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev index.ts",
-    "build": "prisma generate && prisma migrate deploy",
+    "build": "prisma migrate deploy",
     "start": "node index.ts"
   },
   "devDependencies": {
