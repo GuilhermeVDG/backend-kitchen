@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev index.ts",
-    "vercel-builde": "npx prisma migrate deploy"
+    "vercel-builde": "yarn prisma migrate dev"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
