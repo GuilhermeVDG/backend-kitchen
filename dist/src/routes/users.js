@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const users_1 = __importDefault(require("../controllers/users"));
+const auth_1 = __importDefault(require("../middlewares/auth"));
+class User {
+    constructor() {
+        this.routes = (0, express_1.Router)();
+        this.userController = new users_1.default();
+    }
+    setup() {
+        this.routes.post('/cadastro', this.userController.create);
+        this.routes.post('/login', this.userController.login);
+        this.routes.use(auth_1.default);
+        this.routes.get('/me', this.userController.detail);
+        return this.routes;
+    }
+}
+exports.default = User;
